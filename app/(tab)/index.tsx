@@ -1,61 +1,40 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 
+const data = [
+  { id: '1', title: 'Item 1' },
+  { id: '2', title: 'Item 2' },
+  { id: '3', title: 'Item 3' },
+  { id: '4', title: 'Item 4' },
+];
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <View style={styles.TextBlock}>
-        <Text style={styles.Context}>Do you want Runner's High?</Text>
-      </View>
-      <View style={styles.circle}>
-        <View style={styles.innerCircle}>
-          <Text style={styles.CircleContext}>S T A R T</Text>
-        </View>
-      </View>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View style={styles.item}>
+            <Text style={styles.title}>{item.title}</Text>
+          </View>
+        )}
+      />
     </View>
   )
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f4f3f3',
+    padding: 16,
+    backgroundColor: '#fff',
   },
-  circle: {
-    width: 150,
-    height: 150,
-    borderWidth: 2,
-    borderColor: '#15235d',
-    borderStyle: 'solid',
-    borderRadius: 999,
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
+  item: {
+    padding: 20,
+    marginVertical: 8,
+    backgroundColor: '#f9c2ff',
+    borderRadius: 8,
   },
-  innerCircle: {
-    width: 135,
-    height: 135,
-    borderWidth: 1,
-    borderColor: '#bebebe',
-    borderStyle: 'solid',
-    borderRadius: 999,
-    backgroundColor: '#15235d',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  TextBlock: {
-    width: 300,
-    height: 75,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  Context: {
-    fontSize: 18,
-  },
-  CircleContext: {
+  title: {
     fontSize: 16,
-    color: '#fff',
   },
 })

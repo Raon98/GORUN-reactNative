@@ -1,24 +1,30 @@
 import React from 'react'
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon'
 import { Tabs } from 'expo-router'
+import { AntDesign, FontAwesome5 } from '@expo/vector-icons'
 export default function TabLayout() {
   return (
     <Tabs screenOptions={{ headerShown: false, tabBarStyle: {} }}>
       <Tabs.Screen
-        name="index"
+        name="index",
+
+      options={{
+        title: '홈',
+        tabBarIcon: () => <AntDesign name="home" size={24} color="black" />,
+      }}
+      />
+      <Tabs.Screen
+        name="running/index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />,
+          title: '러닝',
+          tabBarIcon: () => <FontAwesome5 name="running" size={24} color="black" />,
         }}
       />
       <Tabs.Screen
-        name="setting"
+        name="setting/index"
         options={{
-          title: 'setting',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'settings' : 'settings-outline'} color={color} />
-          ),
+          title: '기록',
+          tabBarIcon: () => <AntDesign name="barschart" size={24} color="black" />,
         }}
       />
     </Tabs>
